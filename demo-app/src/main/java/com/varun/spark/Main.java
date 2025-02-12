@@ -22,6 +22,9 @@ public class Main {
         SparkSession sc = SparkSession.builder().config(conf).getOrCreate();
         Dataset<Row> dataframe = sc.read().format("csv").option("header", true).load("D:\\Coding\\Projects\\Java\\Spark\\SPARK-DEMO\\demo-app\\src\\main\\resources\\name_and_comments.txt");
         dataframe.show();
+        System.out.println("Data frames are immuatable after this still no new col");
+        dataframe.withColumn("New Name", dataframe.col("first_name"));
+        dataframe.show();
         
     }
 }
